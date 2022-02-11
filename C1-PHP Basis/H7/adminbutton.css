@@ -1,0 +1,15 @@
+
+.admin{
+    width: max-content;
+    position: absolute;
+    top: 40%;
+    
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    
+}
+
+.adminbutton{
+    font-size: larger;
+}
