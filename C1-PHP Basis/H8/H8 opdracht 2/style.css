@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+body{
+    display: grid;
+    justify-items: center;
+}
+.toptext{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.aapLink{
+    display: block;
+    text-decoration: none;
+    color: #ff8400;
+    font-family: Bangers;
+    font-size:x-large;
+    padding: 2px;
+}
