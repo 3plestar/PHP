@@ -29,8 +29,6 @@
   }
   
 
-
-
   class Autooverzicht{
       private $autoos;
 
@@ -43,9 +41,21 @@
 
       function voegAutoToe($merk,$type,$prijs,$url){
         $newAuto = new Auto($merk,$type,$prijs,$url);
+        $this->autoos[] = $newAuto;
       }
 
       function getAutoList(){
-          return $this->autoos;
+        return $this->autoos;
       }  
+
+      function getFilteredList($minprijs,$maxprijs){
+        $filteredList = [];
+        foreach($this->autoos as $auto){
+            if($auto->getPrijs() > $minprijs && $auto->getPrijs() < $maxprijs){
+                $filteredList[] = $auto;
+            }
+        }
+        return $filteredList;
+      } 
+      
   }
