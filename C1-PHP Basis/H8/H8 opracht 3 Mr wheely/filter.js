@@ -6,10 +6,13 @@ let maxSlider = document.getElementById('max');
 let outputMin = document.getElementById('min-value');
 let outputMax = document.getElementById('max-value');
 
+let e = document.getElementById('merkselect');
+
+
 outputMin.innerHTML = minSlider.value;
 outputMax.innerHTML = maxSlider.value;
 
-let priceGap = 1;
+let priceGap = 1000;
 
 //code om de sliders te laten werken
 minSlider.oninput = function(){
@@ -28,5 +31,10 @@ maxSlider.oninput = function(){
 
 //de submit knop
 filter.onclick = function(){
+  let merk = e.options[e.selectedIndex].value;
+  if(merk != "kies"){
+    window.location.href="index.php?minprijs="+minSlider.value+"&maxprijs="+maxSlider.value+"&merk="+merk;
+  } else{
     window.location.href="index.php?minprijs="+minSlider.value+"&maxprijs="+maxSlider.value;
-   }
+  }
+}

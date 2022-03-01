@@ -35,7 +35,11 @@
       function __construct(){
           $this->autoos= [
               new Auto("Toyota","Corolla AE86",29900," "),
-              new Auto("Skoda","Fabia",23000," ")
+              new Auto("Toyota","Levin AE86",28800," "),
+              new Auto("Skoda","Fabia",23000," "),
+              new Auto("Ferrari","F12",40200," "),
+              new Auto("Ford","Focus",10200," "),
+              new Auto("Reliant","Robin",10," ")
           ];
       }
 
@@ -48,14 +52,13 @@
         return $this->autoos;
       }  
 
-      function getFilteredList($minprijs,$maxprijs){
+      function getFilteredList($minprijs,$maxprijs,$merk){
         $filteredList = [];
         foreach($this->autoos as $auto){
-            if($auto->getPrijs() > $minprijs && $auto->getPrijs() < $maxprijs){
+            if($auto->getPrijs() > $minprijs && $auto->getPrijs() < $maxprijs && ($merk == $auto->getMerk() || $merk == 'unset')){
                 $filteredList[] = $auto;
             }
         }
         return $filteredList;
       } 
-      
   }
