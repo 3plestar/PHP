@@ -8,9 +8,13 @@ $filtermaxprijs = isset($_GET['maxprijs']) && !empty($_GET['maxprijs']) ? $_GET[
 $filtermerk = isset($_GET['merk']) && !empty($_GET['merk']) ? $_GET['merk'] : 'unset';
 foreach ($autoos->getAutoList() as $auto){
    $merkList[]= $auto->getMerk();
+   sort($merkList);
 }
 ?>
 <html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <div class="min-max">
         <div class="min">
            <label>Min</label><span id="min-value"></span>
@@ -20,9 +24,9 @@ foreach ($autoos->getAutoList() as $auto){
         </div>     
     </div> 
         
-    <div class="min-max-range">
-        <input type="range" min="0" max="50000" step="100" value="<?php echo $filterminprijs ?>" class="range" id="min">
-        <input type="range" min="0" max="50000" step="100" value="<?php echo $filtermaxprijs ?>" class="range" id="max">      
+    <div class="price-range">
+        <input type="range" min="0" max="50000" step="100" value="<?php echo $filterminprijs ?>" class="slider" id="min">
+        <input type="range" min="0" max="50000" step="100" value="<?php echo $filtermaxprijs ?>" class="slider" id="max">      
     </div>    
 
     <select name="selectEenMerk" id="merkselect">
@@ -35,7 +39,7 @@ foreach ($autoos->getAutoList() as $auto){
     </select>
     <br>
     <input type="button" value="submit" id="submitFilter">
-    <script src="filter.js"></script>
+    
     
     <div>
         <?php
@@ -46,4 +50,6 @@ foreach ($autoos->getAutoList() as $auto){
         }
         ?>
     </div>
+
+    <script src="filter.js"></script>
 </html>

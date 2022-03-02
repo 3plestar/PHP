@@ -12,7 +12,7 @@ let e = document.getElementById('merkselect');
 outputMin.innerHTML = minSlider.value;
 outputMax.innerHTML = maxSlider.value;
 
-let priceGap = 1000;
+let priceGap = 4000;
 
 //code om de sliders te laten werken
 minSlider.oninput = function(){
