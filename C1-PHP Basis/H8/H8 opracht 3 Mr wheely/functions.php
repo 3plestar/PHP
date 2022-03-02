@@ -23,6 +23,7 @@
     function getPrijs(){
       return $this->prijs;
     }
+
     function getUrl(){
       return $this->url;
     }
@@ -34,12 +35,12 @@
 
       function __construct(){
           $this->autoos= [
-              new Auto("Toyota","Corolla AE86",29900," "),
-              new Auto("Toyota","Levin AE86",28800," "),
-              new Auto("Skoda","Fabia",23000," "),
-              new Auto("Ferrari","F12",40200," "),
-              new Auto("Ford","Focus",10200," "),
-              new Auto("Reliant","Robin",10," ")
+              new Auto("Toyota","Corolla AE86 Trueno",29900,"trueno.jpeg"),
+              new Auto("Toyota","Corolla AE86 Levin",28800,"levin.jpeg"),
+              new Auto("Skoda","Fabia",23000,"fabia.jpg"),
+              new Auto("Ferrari","F12",40200,"f12.jpeg"),
+              new Auto("Ford","Focus",10200,"focus.jpeg"),
+              new Auto("Reliant","Robin",10,"robin.jpeg")
           ];
       }
 

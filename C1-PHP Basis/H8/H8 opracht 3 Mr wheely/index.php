@@ -13,43 +13,50 @@ foreach ($autoos->getAutoList() as $auto){
 ?>
 <html>
     <head>
+        <link rel="stylesheet" href="sliderStyle.css">
         <link rel="stylesheet" href="style.css">
     </head>
-    <div class="min-max">
-        <div class="min">
-           <label>Min</label><span id="min-value"></span>
-        </div>
-        <div class="max">
-            <label>Max</label><span id="max-value"></span>
-        </div>     
-    </div> 
-        
-    <div class="price-range">
-        <input type="range" min="0" max="50000" step="100" value="<?php echo $filterminprijs ?>" class="slider" id="min">
-        <input type="range" min="0" max="50000" step="100" value="<?php echo $filtermaxprijs ?>" class="slider" id="max">      
-    </div>    
-
-    <select name="selectEenMerk" id="merkselect">
-        <option value="kies">Kies een merk</option>
-        <?php
-            foreach(array_unique($merkList) as $merk){
-              echo '<option value="'.$merk.'">'.$merk.'</option>';
+    <body>
+        <div class="filterContainer">
+            <div>Merk:</div>
+            <select name="selectEenMerk" id="merkselect">
+                <option value="kies">Alle merken</option>
+                <?php
+                    foreach(array_unique($merkList) as $merk){
+                      echo '<option ';
+                      if($_GET["merk"] == $merk){
+                         echo 'selected="true"'; //keep selected merk upon filtering
+                      }
+                      echo' value="'.$merk.'">'.$merk.'</option>';
+                    }
+                ?>
+            </select><br><br>
+            
+            <div>Prijs:</div>
+            <div class="sliderValues">
+                <span id="min-value"></span>
+                <label>-</label>
+                <span id="max-value"></span>  
+            </div> 
+                
+            <div class="price-range">
+                <input type="range" min="0" max="50000" step="100" value="<?php echo $filterminprijs ?>" class="slider" id="min">
+                <input type="range" min="0" max="50000" step="100" value="<?php echo $filtermaxprijs ?>" class="slider" id="max">      
+            </div>    
+    
+            <input type="button" value="submit" id="submitFilter">
+        </div>  
+        <div class="carContainer">
+            <?php
+            foreach ($autoos->getFilteredList($filterminprijs,$filtermaxprijs,$filtermerk) as $auto){
+                echo "<div class='carItem'>";
+                echo '<img src="img/'.$auto->getUrl().'" class="carImg">';
+                echo "<div>".$auto->getMerk()." ".$auto->getType()."</div>";
+                echo "<div>€".$auto->getPrijs()."</div><br>";
+                echo "</div>";
             }
-        ?>
-    </select>
-    <br>
-    <input type="button" value="submit" id="submitFilter">
-    
-    
-    <div>
-        <?php
-        foreach ($autoos->getFilteredList($filterminprijs,$filtermaxprijs,$filtermerk) as $auto){
-            echo '<img src="'.$auto->getUrl().'">';
-            echo "<div>€".$auto->getPrijs()."</div>";
-            echo "<div>".$auto->getMerk()." ".$auto->getType()."</div><br>";
-        }
-        ?>
-    </div>
-
+            ?>
+        </div>
+    </body>
     <script src="filter.js"></script>
 </html>
