@@ -1,8 +1,6 @@
 <?php
 include("config.php");
 
-
-
 class Brood{
     private $broodnummer;
     private $meel;
@@ -67,6 +65,15 @@ class Broodoverzicht{
         WHERE broodnummer = ?
          ");
         $sth->execute(array($meel,$vorm,$gewicht,$broodnummer));
+      }
+
+      function deleteBrood($broodnummer){
+        global $table;
+
+        $sth = $GLOBALS['dbh']->prepare(" DELETE FROM $table 
+        WHERE broodnummer = ?
+         ");
+        $sth->execute(array($broodnummer));
       }
 
       function getBroodList(){

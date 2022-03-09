@@ -31,9 +31,3 @@ $query = $dbh->prepare("CREATE TABLE IF NOT EXISTS $table (
     PRIMARY KEY(broodnummer)
     ) engine =innodb;");
 $query->execute();
-
-
-$query = $dbh->prepare("INSERT IGNORE INTO $table (broodnummer, meel, vorm, gewicht) VALUES
-(1,'volkoren','vierkant',20),
-(2,'gist','rond',5)");
-$query->execute();

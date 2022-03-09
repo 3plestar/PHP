@@ -28,19 +28,14 @@ $broodjes = new Broodoverzicht();
             foreach($broodjes->getBroodList() as $brood){
                 echo "<div>".$brood->getMeel()." ".$brood->getVorm()."</div>";
                 echo "<div>".$brood->getGewicht()." gram</div>";
-                echo "<button class='change' id='".$brood->getNummer()."'>verander</button>";
+                
+                echo "<form action='edit.php' method='POST''>";
+                echo "<input type='submit' name='edit' value='Edit'>";
+                echo "</submit><input type='number' name='idValue' value='".$brood->getNummer()."' style='visibility:hidden;'></input>";
+                echo "</form>";
             }
           ?>
         </div>
-        <form method="POST">
-             <label>Soort meel:</label><br>
-             <input type="text" id="newmeel" name="newmeel" value=""><br>
-             <label>Vorm:</label><br>
-             <input type="text" id="newvorm" name="newvorm" value=""><br>
-             <label>Gewicht in gram:</label><br>
-             <input type="text" id="newgewicht" name="newgewicht" value=""><br><br>
-             <input type="submit" value="submit">
-        </form>
     </body>
 </html>
 <?php
