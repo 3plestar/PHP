@@ -52,16 +52,21 @@ class Broodoverzicht{
 
       function voegBroodToe($meel,$vorm,$gewicht){
         global $table;
-        
-        $result = $GLOBALS['dbh']->query("SELECT MAX(broodnummer)+1 as newnummer FROM $table");
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-           $newnumber= $row ["newnummer"];   
-        }
-        
-        $query = $GLOBALS['dbh']->prepare("INSERT IGNORE INTO $table (broodnummer, meel, vorm, gewicht) VALUES
-          ($newnumber,'$meel','$vorm',$gewicht)");
-          
-          $query->execute();
+
+        $sth = $GLOBALS['dbh']->prepare("INSERT IGNORE INTO $table ( meel, vorm, gewicht) VALUES
+        (?,?,?)");
+        $sth->execute(array($meel,$vorm,$gewicht));
+
+      }
+
+      function veranderBrood($broodnummer,$meel,$vorm,$gewicht){
+        global $table;
+
+        $sth = $GLOBALS['dbh']->prepare(" UPDATE $table SET
+        meel = ?, vorm = ?, gewicht = ?
+        WHERE broodnummer = ?
+         ");
+        $sth->execute(array($meel,$vorm,$gewicht,$broodnummer));
       }
 
       function getBroodList(){

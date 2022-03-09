@@ -13,11 +13,11 @@ $broodjes = new Broodoverzicht();
         <div>
            <h3>voeg brood toe</h3>
            <form method="POST">
-                <label for="meel">Soort meel:</label><br>
+                <label>Soort meel:</label><br>
                 <input type="text" id="meel" name="meel" value=""><br>
-                <label for="meel">Vorm:</label><br>
+                <label>Vorm:</label><br>
                 <input type="text" id="vorm" name="vorm" value=""><br>
-                <label for="meel">Gewicht in gram:</label><br>
+                <label>Gewicht in gram:</label><br>
                 <input type="text" id="gewicht" name="gewicht" value=""><br><br>
                 <input type="submit" value="submit">
            </form>
@@ -28,15 +28,25 @@ $broodjes = new Broodoverzicht();
             foreach($broodjes->getBroodList() as $brood){
                 echo "<div>".$brood->getMeel()." ".$brood->getVorm()."</div>";
                 echo "<div>".$brood->getGewicht()." gram</div>";
+                echo "<button class='change' id='".$brood->getNummer()."'>verander</button>";
             }
           ?>
         </div>
+        <form method="POST">
+             <label>Soort meel:</label><br>
+             <input type="text" id="newmeel" name="newmeel" value=""><br>
+             <label>Vorm:</label><br>
+             <input type="text" id="newvorm" name="newvorm" value=""><br>
+             <label>Gewicht in gram:</label><br>
+             <input type="text" id="newgewicht" name="newgewicht" value=""><br><br>
+             <input type="submit" value="submit">
+        </form>
     </body>
 </html>
 <?php
 if(isset($_POST['meel'])) {
    $broodjes->voegBroodToe($_POST["meel"],$_POST["vorm"],(float)$_POST["gewicht"]); 
-   session_destroy();
+   
    $_SESSION['postdata'] = $_POST;
    unset($_POST);
    header("Location: ".$_SERVER['PHP_SELF']);
